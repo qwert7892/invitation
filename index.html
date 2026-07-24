@@ -229,7 +229,7 @@
         }
 
         .rsvp-section h2 {
-            font-size: 2.2rem;
+            font-size: 200%;
             color: var(--accent-green);
             margin-bottom: 10px;
         }
@@ -326,6 +326,13 @@
             height: 0;
         }
 
+        .time-list {
+            background-image: url(static/img/flowers_side2.png),  url(static/img/flowers_side3.png);
+            background-position: right, left;
+            background-repeat: no-repeat, no-repeat;
+            background-size: contain, contain;
+        }
+
         /* Адаптивность для мобильных */
         @media (max-width: 600px) {
             .top {
@@ -343,6 +350,18 @@
             .color-swatch { width: 38px; height: 38px; }
             .dress-code { background-image: url("static/img/tkan.png");}
         }
+
+        @media (max-width: 768px) {
+        .time-list {
+            background-size: 20% auto, 20% auto;
+            
+            background-position: left 100% center, right 100% center;
+            background-repeat: repeat-y;
+            padding-left: 20px;
+            padding-right: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -620,7 +639,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="time-list">
         <div class="container">
             <h2 class="box-title">Программа Дня</h2>
             <div class="timeline">
@@ -671,7 +690,7 @@
             <div class="rsvp-section">
                 <h2>ПОДТВЕРЖДЕНИЕ</h2>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">
-                    Пожалуйста, подтвердите свое присутствие до 1 июня 2026 года.
+                    Пожалуйста, подтвердите свое присутствие до 1 октября 2026 года.
                 </p>
 
                 <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Спасибо за Ваш ответ!');">
