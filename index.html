@@ -696,7 +696,7 @@
                     Пожалуйста, подтвердите свое присутствие до 1 октября 2026 года.
                 </p>
 
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Спасибо за Ваш ответ!');">
+                <form id="rsvpForm">
                     <div class="form-group">
                         <label for="name">Ваше имя и фамилия</label>
                         <input type="text" id="name" name="name" placeholder="Иван и Мария Ивановы" required>
@@ -715,7 +715,7 @@
                         <input type="text" id="drinks" name="drinks" placeholder="Красное вино, коньяк, безалкогольные...">
                     </div>
 
-                    <button type="submit" class="btn-submit">Отправить ответ</button>
+                    <button type="submit" class="btn-submit" id="submitBtn">Отправить ответ</button>
                 </form>
             </div>
         </div>
