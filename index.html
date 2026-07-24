@@ -66,7 +66,8 @@
             background-size: cover;
             background-position: top;
             background-repeat: no-repeat;
-            min-height: 100vh;
+            height: 100vh;
+            min-height: 932px;
         }
 
         /* Шапка / Главный экран */
@@ -154,7 +155,7 @@
             display: flex;
             justify-content: center;
             gap: 12px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .color-swatch {
@@ -229,7 +230,7 @@
         }
 
         .rsvp-section h2 {
-            font-size: 200%;
+            font-size: larger 200%;
             color: var(--accent-green);
             margin-bottom: 10px;
         }
@@ -298,6 +299,7 @@
         .title {
             font-family: 'Betmo', serif; /* или sans-serif, если шрифт без засечек */
             font-size: 3.5rem;
+            white-space: nowrap;
         }
 
         .box-title {
@@ -426,7 +428,8 @@
     <style>
         .casino-timer-section {
             position: relative;
-            top: 35vh;
+            /* top: 35vh; */
+            bottom: -35%;
             opacity: 0.75;
             background-color: #f5efe6;
             padding: 40px 20px;
@@ -696,14 +699,14 @@
                 <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Спасибо за Ваш ответ!');">
                     <div class="form-group">
                         <label for="name">Ваше имя и фамилия</label>
-                        <input type="text" id="name" name="name" placeholder="Иван и Мария Ивановские" required>
+                        <input type="text" id="name" name="name" placeholder="Иван и Мария Ивановы" required>
                     </div>
 
                     <div class="form-group">
                         <label for="attendance">Сможете ли вы присутствовать?</label>
                         <select id="attendance" name="attendance" required>
                             <option value="yes">С удовольствием приду (придем)</option>
-                            <option value="no">К сожалению, не смогу (сможем)</option>
+                            <option value="no">К сожалению, не смогу (не сможем)</option>
                         </select>
                     </div>
 
@@ -718,6 +721,49 @@
         </div>
     </section>
 
+    <script>
+        // ⚠️ ВСТАВЬТЕ СЮДА ССЫЛКУ, ПОЛУЧЕННУЮ НА ШАГЕ 2 ⚠️
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnicrxG4aKC9qv57RTjXF9aj-C6fMYjit6sFiuygm-NiGv9G4ui-VtOFfzUMOFUURyhw/exec';
+
+        const form = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Меняем текст на кнопке на время отправки
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            const formData = {
+                name: form.name.value,
+                attendance: form.attendance.value,
+                drinks: form.drinks.value
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Позволяет отправлять запросы в Google Apps Script без ошибок CORS
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                alert('Спасибо за Ваш ответ! Данные успешно сохранены.');
+                form.reset();
+            })
+            .catch(error => {
+                alert('Произошла ошибка при отправке. Попробуйте еще раз.');
+                console.error('Error!', error.message);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить ответ';
+            });
+        });
+    </script>
+
     <div style="position: relative; z-index: 10; text-align: center; margin-top: -60px; margin-bottom: -60px; pointer-events: none;">
         <img class="bottom-flower" src="static/img/flowers_bottom.png" alt="" style="display: block; margin: 0 auto;">
     </div>
@@ -725,8 +771,11 @@
     <footer style="position: relative; padding-top: 80px; z-index: 1; margin-top: 60px;">      
         <div class="container">
             <p>Ждём вас с нетерпением!</p>
-            <p style="margin-top: 10px; opacity: 0.6;">© 2026 Глеб & Арина</p>
-            <p style="margin-top: 10px; opacity: 0.6;">сайт by Илюша</p>
+            <p style="margin-bottom: 5px;">Контакты для связи</p>
+            <p style="margin-bottom: 0px; opacity: 0.6;">Жених +7 922 816 59 10</p>
+            <p style="margin-bottom: 0px; opacity: 0.6;">Невеста +7 922 844 02 04</p>
+            <p style="margin-bottom: 0px; opacity: 0.6;">Ведущий +7 903 392 12 18</p>
+            <p style="margin-top: 20px; opacity: 0.6;">сайт by Илюша</p>
         </div>
     </footer>
 
